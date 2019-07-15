@@ -1,0 +1,66 @@
+/* This is fairly straightforward since it is only going to be viewed on Chrome */
+
+body ~ * {
+    display: inline-block;
+}
+
+body {
+    padding: 1em;
+    background: black;
+    color: white;
+}
+
+h1 {
+    font-size: 2.2rem;
+}
+
+main {
+    background: #181818;
+    padding: .5rem;
+}
+
+label {
+    font-size: 1.5rem;
+    margin: .75rem;
+    display: block;
+}
+
+br {
+    margin: 0.75rem;
+}
+button {
+    margin: 1rem;
+    font-family: inherit;
+    font-size: 1.5rem;
+    padding: .3rem 1.5rem;
+    border-radius: .1rem;
+    background: lightgrey;
+}
+
+#alert {
+    font-family: inherit;
+    font-size: 1.5rem;
+    background: #98dae2;
+    color: #000;
+    padding: 0.5rem 0.6rem;
+    opacity: 0;
+    margin: .5rem;
+    border-radius: .1rem;
+}
+
+.alert-fadeout {
+    animation: fadeout 4s;
+}
+
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
