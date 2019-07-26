@@ -9,6 +9,7 @@
 <body>
     <h1>Customise your Repl.it Color Scheme</h1>
     <main>
+        <button id="toggle-editor">Open CSS Editor</button>
         <label>Normal Identifier:   <input type="color" id="mtk1" /></label>
         <label>String:  <input type="color" id="mtk5" /></label>
         <label>Number:  <input type="color" id="mtk6" /></label>
@@ -19,11 +20,19 @@
         <label>Background:  <input type="color" id="bg-col" /></label>
         <label>Line Numbers:    <input type="color" id="line-num" /></label>
         <label>Highlight:   <input type="color" id="hi-col" /></label>
-        <button id="save">Save</button><button id="reset">Reset Default</button>
+        <button id="save">Save</button><button id="reset">Reset</button>
     </main>
     <div id="alert">
         Preferences Saved! Please reload the repl.it page in order for your changes to take effect.
     </div>
+    <div id="editor-container">
+        <div id="css-editor"></div>
+        <div id="editor-buttons">
+            <button id="close-save">Save and Close</button>
+            <button id="discard">Discard Changes</button>
+        </div>
+    </div>
+    <script src="/ace/src-noconflict/ace.js"></script>
     <script src="options.js"></script>
 </body>
 </html>

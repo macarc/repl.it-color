@@ -51,8 +51,6 @@ button {
 .alert-fadeout {
     animation: fadeout 4s;
 }
-
-
 @keyframes fadeout {
     0% {
         opacity: 1;
@@ -63,4 +61,27 @@ button {
     100% {
         opacity: 0;
     }
+}
+#editor-container {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+#css-editor {
+    margin: 10px auto;
+    width: 80%;
+    height: 90%;
+}
+
+#editor-buttons {
+    display: block;
+    margin-left: 40%;
 }

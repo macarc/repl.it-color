@@ -20,74 +20,77 @@ Span color classes for dark theme:
 
 function setup() {
     chrome.storage.sync.get({
-        mtk1: "#ffffff",
-        mtk4: "#add8e6",
-        mtk5: "#66bdf2",
-        mtk6: "#4fb918",
-        mtk7: "#646464",
-        mtk8: "#d6f619",
-        mtk9: "#dfdfdf",
-        bg_col: "#000000",
-        hi_col: "#8da0f9",
-        line_num: "#ffffff"
+        css: `.identifier {
+    color: #fff;
+}
+.html-attribute {
+    color: #add8e6;
+}
+.string {
+    color: #66bdf2;
+}
+.number {
+    color: #4fb918;
+}
+.comment {
+    color: #646464;
+}
+.keyword {
+    color: #d6f619; 
+}
+.operator {
+    color: #dfdfdf;
+}
+.line-number {
+    color: #fff;
+}
+.background {
+    background: #000;
+}
+.highlight {
+    background: #8da0f9;
+    opacity: 0.5;
+}`,
     }, prefs => { 
         const sheet = document.createElement('style');
-        const style  =`
-        .mtk1 {
-            color: ${prefs.mtk1}  !important;
-        }
-        .mtk4 {
-            color: ${prefs.mtk4}  !important;
-        }
-        .mtk5 {
-            color: ${prefs.mtk5}  !important;
-        }
-        .mtk6 {
-            color: ${prefs.mtk6}  !important;
-        }
-        .mtk7 {
-            color: ${prefs.mtk7}    !important;
-        }
-        .mtk8 {
-            color: ${prefs.mtk8}  !important;
-        }
-        .mtk9 {
-            color: ${prefs.mtk9}  !important;
-        }
-        .mtk22 {
-            color: ${prefs.mtk1}  !important;
-        }
-        .view-lines {
-            background: ${prefs.bg_col}   !important;
-        }
-        .margin-view-overlays, .margin-view-overlays ~ * {
-            background: ${prefs.bg_col}   !important;
-        }
-        .current-line-margin {
-            background: ${prefs.bg_col}     !important;
-        }
-        .selected-text {
-            background: ${prefs.hi_col}   !important;
-            opacity: 0.5    !important;
-        }
-        .line-numbers {
-            color: ${prefs.line_num}    !important;
-        }
+        let css = prefs.css;
 
-        /* Deal with Selection */
-        .cslr.monaco-editor-background {
-            background: ${prefs.bg_col} !important;
-            z-index: 2  !important;
-        }
-        .view-line {
-            z-index: 3  !important;
-        }
-        
-        .selected-text {
-            z-index: 1   !important;
-        }
-        `
-        sheet.innerHTML = style;
+        /* Fix the CSS */
+        css = css.replace('.identifier','.mtk1');
+        css = css.replace('.html-attribute','.mtk4');
+        css = css.replace('.string','.mtk5');
+        css = css.replace('.number','.mtk6')
+        css = css.replace('.comment','.mtk7');
+        css = css.replace('.keyword','.mtk8');
+        css = css.replace('.operator','.mtk9')
+        css = css.replace('.line-number','.line-numbers');
+        css = css.concat(/\.mtk1\s*\{((.|\n)*?)\}/.exec(css)[0].replace('.mtk1','.mtk22'));
+        css = css.replace('.highlight','.selected-text');
+        const bg_css = /\.background\s*\{((.|\n)*?)\}/.exec(css)[1];
+        css = css.concat(`
+.view-lines {${bg_css}}
+.margin-view-overlays, .margin-view-overlays * {${bg_css}}
+.current-line-margin {${bg_css}}
+        `);
+        const bg_col = /background:\s*.*?;/.exec(bg_css);
+        css = css.concat(`
+/* Deal with Selection */
+.cslr.monaco-editor-background {
+    ${bg_col}
+    z-index: 2;
+}
+.view-line {
+    z-index: 3;
+}
+
+.selected-text {
+    z-index: 1;
+}
+        `);
+        css = css.replace(/;/g,' !important;')
+        console.log(`repl.it-color is applying the following CSS: 
+${css}`);
+        sheet.innerHTML = css;
         document.body.appendChild(sheet);
     });
 }
