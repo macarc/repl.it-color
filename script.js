@@ -56,14 +56,14 @@ function setup() {
         let css = prefs.css;
 
         /* Fix the CSS */
-        css = css.replace('.identifier','.mtk1');
-        css = css.replace('.html-attribute','.mtk4');
-        css = css.replace('.string','.mtk5');
-        css = css.replace('.number','.mtk6')
-        css = css.replace('.comment','.mtk7');
-        css = css.replace('.keyword','.mtk8');
-        css = css.replace('.operator','.mtk9')
-        css = css.replace('.line-number','.line-numbers');
+        css = css.replace(/\.identifier/g,'.mtk1');
+        css = css.replace(/\.html-attribute/g,'.mtk4');
+        css = css.replace(/\.string/g,'.mtk5');
+        css = css.replace(/\.number/g,'.mtk6')
+        css = css.replace(/\.comment/g,'.mtk7');
+        css = css.replace(/\.keyword/g,'.mtk8');
+        css = css.replace(/\.operator/g,'.mtk9')
+        css = css.replace(/\.line-number/g,'.line-numbers');
         css = css.concat(/\.mtk1\s*\{((.|\n)*?)\}/.exec(css)[0].replace('.mtk1','.mtk22'));
         css = css.replace('.highlight','.selected-text');
         const bg_css = /\.background\s*\{((.|\n)*?)\}/.exec(css)[1];
