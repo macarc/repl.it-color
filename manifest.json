@@ -2,13 +2,13 @@
     "manifest_version": 2,
     
     "name": "repl.it-color",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Customise the repl.it editor (https://repl.it) by changing the syntax highlighting to match your preferences. Created by @ArchieMaclean.",
     
     "options_page": "options.html",
     "permissions": ["storage"],
     "content_scripts": [{
-        "js": ["script.js"],
+        "js": ["storage.js", "script.js"],
         "matches": ["https://repl.it/*"]
      }],
      "icons": {

@@ -3,80 +3,28 @@
 // July 2019
 
 
-/*
-Span color classes for dark theme:
+async function setup() {
+    const prefs = await getPrefs();
+    const sheet = document.createElement('style');
+    const css = `
+.mtk1 ${toCSS(prefs.identifier)}
+.mtk22 ${toCSS(prefs.identifier)}
+.mtk9 ${toCSS(prefs.htmlTag)}
+.mtk5, .string ${toCSS(prefs.string)}
+.mtk6, .constant, .numeric ${toCSS(prefs.number)}
+.mtk7, .mtk8, .comment ${toCSS(prefs.comment)}
+.mtk4, .keyword ${toCSS(prefs.keyword)}
+.mtk12, .punctuation, .operator ${toCSS(prefs.operator)}
+.function ${toCSS(prefs.function)}
 
-.mtk1: identifier
-.mtk4: html attribute
-.mtk5: string
-.mtk6: number
-.mtk7: comment
-.mtk8: keyword (e.g. function, class, return)
-.mtk9: operator (=,(,)) in some langs
-.mtk22: function/class name, in Node
+.view-lines, .margin-view-overlays, .margin-view-overlays *, .current-line-margin ${toCSS(prefs.background)}
 
-*/
+.selected-text ${toCSS(prefs.highlight)}
+.line-numbers ${toCSS(prefs.lineNumber)}
 
-
-function setup() {
-    chrome.storage.sync.get({
-        css: `.identifier {
-    color: #fff;
-}
-.html-attribute {
-    color: #add8e6;
-}
-.string {
-    color: #66bdf2;
-}
-.number {
-    color: #4fb918;
-}
-.comment {
-    color: #646464;
-}
-.keyword {
-    color: #d6f619; 
-}
-.operator {
-    color: #dfdfdf;
-}
-.line-number {
-    color: #fff;
-}
-.background {
-    background: #000;
-}
-.highlight {
-    background: #8da0f9;
-    opacity: 0.5;
-}`,
-    }, prefs => { 
-        const sheet = document.createElement('style');
-        let css = prefs.css;
-
-        /* Fix the CSS */
-        css = css.replace(/\.identifier/g,'.mtk1');
-        css = css.replace(/\.html-attribute/g,'.mtk4');
-        css = css.replace(/\.string/g,'.mtk5');
-        css = css.replace(/\.number/g,'.mtk6')
-        css = css.replace(/\.comment/g,'.mtk7');
-        css = css.replace(/\.keyword/g,'.mtk8');
-        css = css.replace(/\.operator/g,'.mtk9')
-        css = css.replace(/\.line-number/g,'.line-numbers');
-        css = css.concat(/\.mtk1\s*\{((.|\n)*?)\}/.exec(css)[0].replace('.mtk1','.mtk22'));
-        css = css.replace('.highlight','.selected-text');
-        const bg_css = /\.background\s*\{((.|\n)*?)\}/.exec(css)[1];
-        css = css.concat(`
-.view-lines {${bg_css}}
-.margin-view-overlays, .margin-view-overlays * {${bg_css}}
-.current-line-margin {${bg_css}}
-        `);
-        const bg_col = /background:\s*.*?;/.exec(bg_css);
-        css = css.concat(`
 /* Deal with Selection */
 .cslr.monaco-editor-background {
-    ${bg_col}
+    background: transparent;
     z-index: 2;
 }
 .view-line {
@@ -86,13 +34,12 @@ function setup() {
 .selected-text {
     z-index: 1;
 }
-        `);
-        css = css.replace(/;/g,' !important;')
-        console.log(`repl.it-color is applying the following CSS: 
-${css}`);
-        sheet.innerHTML = css;
-        document.body.appendChild(sheet);
-    });
+    `;
+    const styles = css.replace(/;/g,' !important;')
+    console.log(`repl.it-color is applying the following CSS: 
+${styles}`);
+    sheet.innerHTML = styles;
+    document.body.appendChild(sheet);
 }
 
 setup();
