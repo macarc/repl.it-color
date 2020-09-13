@@ -34,6 +34,9 @@ async function setup() {
 .selected-text {
     z-index: 1;
 }
+.squiggly-error {
+    z-index: 5;
+}
     `;
     const styles = css.replace(/;/g,' !important;')
     console.log(`repl.it-color is applying the following CSS: 
