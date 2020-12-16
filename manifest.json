@@ -2,7 +2,7 @@
     "manifest_version": 2,
     
     "name": "repl.it-color",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "Customise the repl.it editor (https://repl.it) by changing the syntax highlighting to match your preferences. Created by @ArchieMaclean.",
     
     "options_page": "options.html",

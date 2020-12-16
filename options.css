@@ -47,3 +47,6 @@ p {
     font-size: 1rem;
 }
 
+input.opacity {
+    width: 3rem;
+}
