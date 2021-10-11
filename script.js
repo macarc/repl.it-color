@@ -37,6 +37,11 @@ async function setup() {
 .squiggly-error {
     z-index: 5;
 }
+/* indent */
+.cigr {
+    box-shadow: 1px 0 0 0 ${prefs.indent.color} inset;
+    z-index: 10;
+}
     `;
     const styles = css.replace(/;/g,' !important;')
     console.log(`repl.it-color is applying the following CSS: 
@@ -46,4 +51,4 @@ ${styles}`);
 }
 
 setup();
-console.log('%c Thank you for using repl.it color!','background: yellow; color: black; padding: .5em; border-radius: 0.2em; font-family: Roboto; font-size: 1.5em;')
+console.log('Thank you for using repl.it color!')

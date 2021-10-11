@@ -7,6 +7,7 @@ const defaultOptions = {
     keyword: { color: '#d6f619', bold: false, italic: false },
     operator: { color: '#dfdfdf', bold: false, italic: false },
     function: { color: '#aaccbb', bold: false, italic: false },
+    indent: { color: '#0000ff'},
     background: { background: '#000000' },
     highlight: { background: '#8da0f9', opacity: 0.5 },
     lineNumber: { color: '#ffffff', bold: false, italic: false },
