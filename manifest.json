@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "repl.it-color",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "description": "Customise the repl.it editor (https://replit.com) by changing the syntax highlighting to match your preferences.",
     "options_page": "options.html",
     "permissions": ["storage"],
