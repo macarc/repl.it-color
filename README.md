@@ -1,4 +1,6 @@
 # repl.it-color
+
+> Note: Replit now [supports custom themes](https://replit.com/themes) within the app itself, so this plugin is hereby deprecated :)
  
 Allows customisation of the [repl.it](https://repl.it) color scheme (syntax highlighting).
 
